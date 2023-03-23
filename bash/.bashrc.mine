@@ -1,0 +1,28 @@
+up() {
+if [ $# -eq 0 ]
+  then
+    cd ..
+    return 0
+fi
+for level in $(seq 1 $1); do
+    cd ..
+done
+}
+
+mark() {
+dirname="/tmp/${$}/"
+if ! [ -e $dirname ]
+  then
+    mkdir $dirname
+fi
+echo $(pwd) > "${dirname}/${1}"
+}
+
+go() {
+filename="/tmp/${$}/${1}"
+if ! [ -e $filename ]
+  then
+    return 1
+fi
+cd $(cat $filename)
+}

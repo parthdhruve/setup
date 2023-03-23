@@ -1,0 +1,21 @@
+"Key remaps
+inoremap jk <ESC>
+
+"Indenting
+set autoindent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+"Syntax
+syntax on
+
+"Page width
+set colorcolumn=80
+
+"Line numbers
+set number
+set relativenumber
+
+"Searching
+set hlsearch
