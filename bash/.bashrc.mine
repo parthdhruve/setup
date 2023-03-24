@@ -1,3 +1,9 @@
+# ALIASES
+alias m="mark"
+alias g="go"
+alias lg="ls -a | grep -i"
+
+# FUNCTIONS
 up() {
 if [ $# -eq 0 ]
   then
