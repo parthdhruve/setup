@@ -54,32 +54,22 @@ install_homebrew () {
   eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 }
 
-# Install Homebrew formulae
-install_brew_formulae () {
-  # Check if brew is installed (should be after install_homebrew)
+# Install Homebrew packages and casks from Brewfile
+install_brew_packages () {
+  # Check if brew is installed
   if ! command -v brew &> /dev/null; then
     echo "Error: Homebrew is not installed"
     return 1
   fi
   
-  local formulae_file="./brew/formulae.txt"
-  if [ ! -f "$formulae_file" ]; then
-    echo "Error: $formulae_file not found"
+  local brewfile="./Brewfile"
+  if [ ! -f "$brewfile" ]; then
+    echo "Error: $brewfile not found"
     return 1
   fi
   
-  # Install each formula if not already installed
-  while IFS= read -r formula; do
-    # Skip empty lines and comments
-    [[ -z "$formula" || "$formula" =~ ^# ]] && continue
-    
-    if brew list "$formula" &>/dev/null; then
-      echo "$formula is already installed"
-    else
-      echo "Installing $formula..."
-      brew install "$formula"
-    fi
-  done < "$formulae_file"
+  echo "Installing Homebrew packages from Brewfile..."
+  brew bundle install --file "$brewfile"
 }
 
 set_default_shell
@@ -90,4 +80,4 @@ append_source ./vim/.vimrc.mine ~/.vimrc
 
 install_homebrew
 install_vim_plugins
-install_brew_formulae
+install_brew_packages
