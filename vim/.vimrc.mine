@@ -1,3 +1,6 @@
+"Plugin management
+source /Users/parth/setup/vim/plugins.vim
+
 "Key remaps
 inoremap jk <ESC>
 

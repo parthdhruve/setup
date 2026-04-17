@@ -21,7 +21,28 @@ set_default_shell () {
   fi
 }
 
+# Install vim-plug and plugins
+install_vim_plugins () {
+  local plug_path="$HOME/.vim/autoload/plug.vim"
+  
+  # Install vim-plug if not already installed
+  if [ ! -f "$plug_path" ]; then
+    echo "Installing vim-plug..."
+    curl -fLo "$plug_path" --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo "vim-plug installed"
+  else
+    echo "vim-plug is already installed"
+  fi
+  
+  # Install/update plugins
+  vim +PlugInstall +qall 2>/dev/null
+  echo "Vim plugins installed"
+}
+
 set_default_shell
 
 append_source ./zsh/.zshrc.mine ~/.zshrc
 append_source ./vim/.vimrc.mine ~/.vimrc
+
+install_vim_plugins
