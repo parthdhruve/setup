@@ -23,5 +23,5 @@ set_default_shell () {
 
 set_default_shell
 
-append_source ./bash/.bashrc.mine ~/.bash_profile
+append_source ./zsh/.zshrc.mine ~/.zshrc
 append_source ./vim/.vimrc.mine ~/.vimrc
