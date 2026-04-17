@@ -28,3 +28,7 @@ set hlsearch
 
 "File backups
 set noswapfile
+
+"Clipboard integration - yank to both vim registers and system clipboard
+set clipboard=unnamed
+autocmd TextYankPost * call system('pbcopy', @0)

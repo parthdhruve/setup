@@ -107,6 +107,30 @@ setup_symlinks () {
   fi
 }
 
+# Configure iTerm2 keybindings
+configure_iterm2_keybindings () {
+  # Check if iTerm2 is installed
+  if [ ! -d "/Applications/iTerm.app" ]; then
+    echo "Warning: iTerm2 is not installed, skipping keybinding configuration"
+    return 0
+  fi
+  
+  # Check if Python 3 is available
+  if ! command -v python3 &> /dev/null; then
+    echo "Warning: Python 3 is not available, skipping iTerm2 keybinding configuration"
+    return 0
+  fi
+  
+  local script="./iterm2/setup_keybindings.py"
+  if [ ! -f "$script" ]; then
+    echo "Error: $script not found"
+    return 1
+  fi
+  
+  echo "Configuring iTerm2 keybindings..."
+  python3 "$script"
+}
+
 set_default_shell
 
 append_source ./zsh/.zprofile.mine ~/.zprofile
@@ -117,3 +141,4 @@ install_homebrew
 install_vim_plugins
 install_brew_packages
 setup_symlinks
+configure_iterm2_keybindings
