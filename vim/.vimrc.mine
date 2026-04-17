@@ -19,3 +19,6 @@ set relativenumber
 
 "Searching
 set hlsearch
+
+"File backups
+set noswapfile

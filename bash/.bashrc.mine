@@ -24,7 +24,7 @@ fi
 echo $(pwd) > "${dirname}/${1}"
 }
 
-go() {
+g() {
 filename="/tmp/${$}/${1}"
 if ! [ -e $filename ]
   then
@@ -32,3 +32,6 @@ if ! [ -e $filename ]
 fi
 cd $(cat $filename)
 }
+
+# ENVIRONMENT VARIABLES
+export PATH="/usr/local/bin:$PATH"
