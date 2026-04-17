@@ -37,3 +37,10 @@ cd $(cat $filename)
 
 # ENVIRONMENT VARIABLES
 export PATH="/usr/local/bin:$PATH"
+
+# Vim mode
+bindkey -v
+export KEYTIMEOUT=10
+
+# Map jk to escape in vim insert mode
+bindkey -M viins 'jk' vi-cmd-mode
