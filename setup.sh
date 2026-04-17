@@ -72,6 +72,41 @@ install_brew_packages () {
   brew bundle install --file "$brewfile"
 }
 
+# Setup symlinks for app configurations
+setup_symlinks () {
+  # Karabiner
+  local karabiner_src="$(cd ./karabiner && pwd)/karabiner.json"
+  local karabiner_dest="$HOME/.config/karabiner/karabiner.json"
+  
+  mkdir -p "$HOME/.config/karabiner"
+  if [ -L "$karabiner_dest" ]; then
+    echo "Karabiner symlink already exists"
+  elif [ -f "$karabiner_dest" ]; then
+    echo "Warning: $karabiner_dest exists and is not a symlink. Backing up to $karabiner_dest.bak"
+    mv "$karabiner_dest" "$karabiner_dest.bak"
+    ln -s "$karabiner_src" "$karabiner_dest"
+  else
+    ln -s "$karabiner_src" "$karabiner_dest"
+    echo "Karabiner symlink created"
+  fi
+  
+  # iTerm2 DynamicProfiles
+  local iterm2_src="$(cd ./iterm2 && pwd)/profiles.json"
+  local iterm2_dest="$HOME/Library/Application Support/iTerm2/DynamicProfiles/profiles.json"
+  
+  mkdir -p "$HOME/Library/Application Support/iTerm2/DynamicProfiles"
+  if [ -L "$iterm2_dest" ]; then
+    echo "iTerm2 symlink already exists"
+  elif [ -f "$iterm2_dest" ]; then
+    echo "Warning: $iterm2_dest exists and is not a symlink. Backing up to $iterm2_dest.bak"
+    mv "$iterm2_dest" "$iterm2_dest.bak"
+    ln -s "$iterm2_src" "$iterm2_dest"
+  else
+    ln -s "$iterm2_src" "$iterm2_dest"
+    echo "iTerm2 symlink created"
+  fi
+}
+
 set_default_shell
 
 append_source ./zsh/.zprofile.mine ~/.zprofile
@@ -81,3 +116,4 @@ append_source ./vim/.vimrc.mine ~/.vimrc
 install_homebrew
 install_vim_plugins
 install_brew_packages
+setup_symlinks

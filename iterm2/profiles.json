@@ -1,0 +1,10 @@
+{
+  "Profiles": [
+    {
+      "Name": "Default",
+      "Guid": "default",
+      "Working Directory": "",
+      "Reuse Previous Session": false
+    }
+  ]
+}
