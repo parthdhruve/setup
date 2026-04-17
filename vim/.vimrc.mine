@@ -1,6 +1,9 @@
 "Plugin management
 source /Users/parth/setup/vim/plugins.vim
 
+"Leader key
+let mapleader = ","
+
 "Key remaps
 inoremap jk <ESC>
 
