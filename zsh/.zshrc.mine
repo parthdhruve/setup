@@ -1,5 +1,5 @@
 # APPLICATION-SPECIFIC ALIASES
-source /Users/parth/setup/git/aliases.sh
+source "$HOME/setup/git/aliases.sh"
 
 # GENERAL ALIASES
 alias m="mark"
@@ -36,7 +36,7 @@ cd $(cat $filename)
 }
 
 # ENVIRONMENT VARIABLES
-export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
 
 # Vim mode
 bindkey -v
