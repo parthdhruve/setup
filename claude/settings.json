@@ -24,6 +24,13 @@
       ]
     }
   },
-  "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Thinking",
+      "Processing",
+      "Working"
+    ]
+  },
+  "skipDangerousModePermissionPrompt": true,
 }
