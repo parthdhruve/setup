@@ -90,6 +90,23 @@ setup_symlinks () {
     echo "Karabiner symlink created"
   fi
   
+  # Claude settings
+  local claude_src="$(cd ./claude && pwd)/settings.json"
+  local claude_dest="$HOME/.claude/settings.json"
+
+  mkdir -p "$HOME/.claude"
+  if [ -L "$claude_dest" ]; then
+    echo "Claude settings symlink already exists"
+  elif [ -f "$claude_dest" ]; then
+    echo "Warning: $claude_dest exists and is not a symlink. Backing up to $claude_dest.bak"
+    mv "$claude_dest" "$claude_dest.bak"
+    ln -s "$claude_src" "$claude_dest"
+    echo "Claude settings symlink created"
+  else
+    ln -s "$claude_src" "$claude_dest"
+    echo "Claude settings symlink created"
+  fi
+
   # iTerm2 DynamicProfiles
   local iterm2_src="$(cd ./iterm2 && pwd)/profiles.json"
   local iterm2_dest="$HOME/Library/Application Support/iTerm2/DynamicProfiles/profiles.json"
