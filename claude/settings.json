@@ -1,22 +1,29 @@
 {
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "statusLine": {
     "type": "command",
     "command": "$HOME/setup/claude/statusline.sh"
   },
-  "permissions": {
-    "defaultMode": "bypassPermissions"
-  },
-  "skipDangerousModePermissionPrompt": true,
   "sandbox": {
     "enabled": true,
     "failIfUnavailable": true,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
-    "filesystem": {
-      "allowWrite": ["."]
-    },
     "network": {
       "allowAllUnixSockets": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        ".",
+        "/Users/parth/Library/Caches/go-build"
+      ],
+      "allowRead": [
+        "/Users/parth/Library/Caches/go-build"
+      ]
     }
-  }
+  },
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }
